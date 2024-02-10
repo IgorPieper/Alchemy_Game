@@ -1,0 +1,17 @@
+[
+    {
+        "element1": "water",
+        "element2": "dirt",
+        "result": "mud"
+    },
+    {
+        "element1": "water",
+        "element2": "fire",
+        "result": "steam"
+    },
+    {
+        "element1": "wind",
+        "element2": "dirt",
+        "result": "dust"
+    }
+]
