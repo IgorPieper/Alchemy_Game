@@ -13,5 +13,155 @@
         "element1": "wind",
         "element2": "dirt",
         "result": "dust"
+    },
+    {
+        "element1": "mud",
+        "element2": "fire",
+        "result": "clay"
+    },
+    {
+        "element1": "wind",
+        "element2": "fire",
+        "result": "smoke"
+    },
+    {
+        "element1": "clay",
+        "element2": "fire",
+        "result": "brick"
+    },
+    {
+        "element1": "dirt",
+        "element2": "fire",
+        "result": "lava"
+    },
+    {
+        "element1": "lava",
+        "element2": "water",
+        "result": "stone"
+    },
+    {
+        "element1": "stone",
+        "element2": "wind",
+        "result": "sand"
+    },
+    {
+        "element1": "stone",
+        "element2": "steam",
+        "result": "geyser"
+    },
+    {
+        "element1": "sand",
+        "element2": "fire",
+        "result": "glass"
+    },
+    {
+        "element1": "water",
+        "element2": "wind",
+        "result": "steam"
+    },
+    {
+        "element1": "lava",
+        "element2": "wind",
+        "result": "stone"
+    },
+    {
+        "element1": "glass",
+        "element2": "sand",
+        "result": "hourglass"
+    },
+    {
+        "element1": "wind",
+        "element2": "wind",
+        "result": "tornado"
+    },
+    {
+        "element1": "steam",
+        "element2": "steam",
+        "result": "cloud"
+    },
+    {
+        "element1": "water",
+        "element2": "glass",
+        "result": "aquarium"
+    },
+    {
+        "element1": "dirt",
+        "element2": "glass",
+        "result": "terrarium"
+    },
+    {
+        "element1": "stone",
+        "element2": "lava",
+        "result": "obsidian"
+    },
+    {
+        "element1": "tornado",
+        "element2": "sand",
+        "result": "sandstorm"
+    },
+    {
+        "element1": "wind",
+        "element2": "sand",
+        "result": "dust"
+    },
+    {
+        "element1": "water",
+        "element2": "cloud",
+        "result": "rain"
+    },
+    {
+        "element1": "sand",
+        "element2": "stone",
+        "result": "gravel"
+    },
+    {
+        "element1": "rain",
+        "element2": "dust",
+        "result": "acid_rain"
+    },
+    {
+        "element1": "tornado",
+        "element2": "stone",
+        "result": "energy"
+    },
+    {
+        "element1": "tornado",
+        "element2": "dust",
+        "result": "energy"
+    },
+    {
+        "element1": "cloud",
+        "element2": "energy",
+        "result": "storm"
+    },
+    {
+        "element1": "rain",
+        "element2": "energy",
+        "result": "storm"
+    },
+    {
+        "element1": "tornado",
+        "element2": "energy",
+        "result": "storm"
+    },
+    {
+        "element1": "rain",
+        "element2": "dirt",
+        "result": "puddle"
+    },
+    {
+        "element1": "stone",
+        "element2": "dirt",
+        "result": "rock"
+    },
+    {
+        "element1": "stone",
+        "element2": "stone",
+        "result": "flint"
+    },
+    {
+        "element1": "flint",
+        "element2": "flint",
+        "result": "spark"
     }
 ]

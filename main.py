@@ -1,66 +1,28 @@
-from styles import *
+from styles.main_styles import *
+from logic.elements import *
 
 import arcade
-import random
 import time
 import json
 
-
 # Starting position of elements:
 ELEMENTS_SPACING = 200
-
-
-class Element:
-    def __init__(self, name, is_unlocked=None, position_x=None, position_y=None):
-        self.name = name
-        self.radius = 50
-        self.position_x = position_x if position_x is not None else random.randint(self.radius, SCREEN_WIDTH - self.radius)
-        self.position_y = position_y if position_y is not None else random.randint(self.radius, SCREEN_HEIGHT - self.radius)
-        self.texture = arcade.load_texture(f"{ELEMENTS_PATH}{name}.png")
-        self.scale = 2 * 50 / self.texture.width
-        self.dragging = False
-
-    def draw(self):
-        arcade.draw_texture_rectangle(self.position_x, self.position_y, self.texture.width * self.scale, self.texture.height * self.scale, self.texture)
-        arcade.draw_text(self.name, self.position_x, self.position_y - 75, arcade.color.WHITE, 20, anchor_x="center")
-
-    def check_mouse_press(self, x, y):
-        distance = ((x - self.position_x) ** 2 + (y - self.position_y) ** 2) ** 0.5
-        if distance <= self.radius:
-            self.dragging = True
-            return True
-        return False
-
-    def check_mouse_release(self):
-        self.dragging = False
-
-    def on_mouse_motion(self, x, y):
-        if self.dragging:
-            new_x = max(self.radius, min(SCREEN_WIDTH - self.radius, x))
-            new_y = max(self.radius, min(SCREEN_HEIGHT - self.radius, y))
-            self.position_x = new_x
-            self.position_y = new_y
-
-    def collides_with(self, other_element):
-        distance = ((self.position_x - other_element.position_x) ** 2 + (
-                    self.position_y - other_element.position_y) ** 2) ** 0.5
-        return distance < self.radius + other_element.radius
 
 
 class MyGame(arcade.Window):
     def __init__(self):
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
         arcade.set_background_color(arcade.color.ASH_GREY)
-
         self.click_count = 0
         self.last_click_time = 0
         self.click_threshold = 0.25
-
         self.elements = []
         self.spawn_default_elements(SCREEN_MIDDLE_WIDTH, SCREEN_MIDDLE_HEIGHT, ELEMENTS_SPACING)
-        self.trash_icon = arcade.load_texture(f"{ELEMENTS_PATH}clear.png")
         self.dragging_element = None
+
         self.combinations_data = self.load_combinations_data("data/combinations.json")
+
+        self.trash_icon = arcade.load_texture(f"{BUTTON_IMAGE_PATH}clear.png")
 
     @staticmethod
     def load_combinations_data(file_path):
@@ -80,29 +42,40 @@ class MyGame(arcade.Window):
 
         arcade.draw_rectangle_filled(RIGHT_PANEL_MIDDLE_WIDTH, RIGHT_PANEL_MIDDLE_HEIGHT,
                                      RIGHT_PANEL_WIDTH, RIGHT_PANEL_HEIGHT, arcade.color.GRAY)
-        arcade.draw_texture_rectangle(RIGHT_PANEL_MIDDLE_WIDTH - 50, 75, self.trash_icon.width // RIGHT_PANEL_IMAGE_SCALE, self.trash_icon.height // RIGHT_PANEL_IMAGE_SCALE, self.trash_icon)
+        arcade.draw_texture_rectangle(RIGHT_PANEL_MIDDLE_WIDTH - 50, 75,
+                                      self.trash_icon.width // RIGHT_PANEL_IMAGE_SCALE,
+                                      self.trash_icon.height // RIGHT_PANEL_IMAGE_SCALE,
+                                      self.trash_icon)
         arcade.draw_text("Clear", RIGHT_PANEL_MIDDLE_WIDTH + 20, 67, arcade.color.WHITE, 20, anchor_x="center")
 
     def on_mouse_press(self, x, y, button, modifiers):
-        # Moving elements
-        for element in reversed(self.elements):
-            if element.check_mouse_press(x, y):
-                self.elements.remove(element)
-                self.elements.append(element)
-                break
-
-        # Tripleclick for spawning default elements
         current_time = time.time()
+
+        # Moving elements
         if button == arcade.MOUSE_BUTTON_LEFT:
             if current_time - self.last_click_time < self.click_threshold:
                 self.click_count += 1
             else:
                 self.click_count = 1
-            if self.click_count == 3:
-                self.spawn_default_elements(x, y, ELEMENTS_SPACING)
-                self.click_count = 0
-
             self.last_click_time = current_time
+        element_clicked = False
+
+        for element in reversed(self.elements):
+            if element.check_mouse_press(x, y):
+                element_clicked = True
+                self.elements.remove(element)
+                self.elements.append(element)
+                self.dragging_element = element
+                break
+
+        # Triple-click functionality
+        if self.click_count == 3:
+            if element_clicked:
+                cloned_element = Element(element.name, True, element.position_x + 10, element.position_y + 10)
+                self.elements.append(cloned_element)
+            else:
+                self.spawn_default_elements(x, y, ELEMENTS_SPACING)
+            self.click_count = 0  # Reset click count after handling
 
         # Working clear button
         trash_icon_width_scaled = self.trash_icon.width // RIGHT_PANEL_IMAGE_SCALE
@@ -115,12 +88,14 @@ class MyGame(arcade.Window):
         if trash_button_x_start < x < trash_button_x_end and trash_button_y_start < y < trash_button_y_end:
             self.elements.clear()
 
-        for element in reversed(self.elements):
-            if element.check_mouse_press(x, y):
-                self.elements.remove(element)
-                self.elements.append(element)
-                self.dragging_element = element
-                break
+        # Elements fusion
+        if not self.click_count == 3 and element_clicked:
+            for element in reversed(self.elements):
+                if element.check_mouse_press(x, y):
+                    self.elements.remove(element)
+                    self.elements.append(element)
+                    self.dragging_element = element
+                    break
 
     def on_mouse_release(self, x, y, button, modifiers):
         if self.dragging_element:
