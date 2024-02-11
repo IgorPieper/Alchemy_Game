@@ -188,5 +188,10 @@
         "element1": "tornado",
         "element2": "water",
         "result": "gale"
+    },
+    {
+        "element1": "magma",
+        "element2": "water",
+        "result": "obsidian"
     }
 ]

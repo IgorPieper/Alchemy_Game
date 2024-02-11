@@ -3,7 +3,7 @@ from styles.main_styles import *
 import arcade
 import random
 
-# Elements
+# Elements (100x100 px)
 ELEMENTS_PATH = "art/elements/"
 
 
@@ -18,11 +18,10 @@ class Element:
         self.dragging = False
 
         self.texture = arcade.load_texture(f"{ELEMENTS_PATH}{name}.png")
-        self.scale = 2 * 50 / self.texture.width
 
     def draw(self):
-        arcade.draw_texture_rectangle(self.position_x, self.position_y, self.texture.width * self.scale,
-                                      self.texture.height * self.scale, self.texture)
+        arcade.draw_texture_rectangle(self.position_x, self.position_y, self.texture.width,
+                                      self.texture.height, self.texture)
         arcade.draw_text(self.name, self.position_x, self.position_y - 75, arcade.color.WHITE, 20, anchor_x="center")
 
     def check_mouse_press(self, x, y):
