@@ -62,7 +62,7 @@
     {
         "element1": "lava",
         "element2": "wind",
-        "result": "stone"
+        "result": "magma"
     },
     {
         "element1": "glass",
@@ -92,7 +92,7 @@
     {
         "element1": "stone",
         "element2": "lava",
-        "result": "obsidian"
+        "result": "lava"
     },
     {
         "element1": "tornado",
@@ -163,5 +163,30 @@
         "element1": "flint",
         "element2": "flint",
         "result": "spark"
+    },
+    {
+        "element1": "magma",
+        "element2": "wind",
+        "result": "obsidian"
+    },
+    {
+        "element1": "steam",
+        "element2": "dirt",
+        "result": "fog"
+    },
+    {
+        "element1": "cloud",
+        "element2": "dirt",
+        "result": "fog"
+    },
+    {
+        "element1": "storm",
+        "element2": "water",
+        "result": "gale"
+    },
+    {
+        "element1": "tornado",
+        "element2": "water",
+        "result": "gale"
     }
 ]

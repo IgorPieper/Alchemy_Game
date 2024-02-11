@@ -4,6 +4,7 @@ from logic.elements import *
 import arcade
 import time
 import json
+import os
 
 # Starting position of elements:
 ELEMENTS_SPACING = 200
@@ -17,6 +18,9 @@ class MyGame(arcade.Window):
         self.last_click_time = 0
         self.click_threshold = 0.25
         self.elements = []
+        self.unlocked_elements = []
+        self.elements_count = "4/30"
+        self.every_element_count = sum(1 for item in os.listdir(ELEMENTS_PATH) if os.path.isfile(os.path.join(ELEMENTS_PATH, item)))
         self.spawn_default_elements(SCREEN_MIDDLE_WIDTH, SCREEN_MIDDLE_HEIGHT, ELEMENTS_SPACING)
         self.dragging_element = None
 
@@ -47,6 +51,8 @@ class MyGame(arcade.Window):
                                       self.trash_icon.height // RIGHT_PANEL_IMAGE_SCALE,
                                       self.trash_icon)
         arcade.draw_text("Clear", RIGHT_PANEL_MIDDLE_WIDTH + 20, 67, arcade.color.WHITE, 20, anchor_x="center")
+        arcade.draw_text(self.elements_count, RIGHT_PANEL_MIDDLE_WIDTH, RIGHT_PANEL_MIDDLE_HEIGHT - 37, arcade.color.WHITE, 20,
+                         anchor_x="center")
 
     def on_mouse_press(self, x, y, button, modifiers):
         current_time = time.time()
@@ -123,6 +129,7 @@ class MyGame(arcade.Window):
 
     def add_element(self, name,  x, y):
         self.elements.append(Element(name, True, x, y))
+        self.elements_count = f"{len(self.unlocked_elements)}/{self.every_element_count}"
 
     def spawn_default_elements(self, x, y, spacing):
         positions = {"north": (x, y + spacing // 2),
@@ -134,10 +141,17 @@ class MyGame(arcade.Window):
         self.elements.append(Element("fire", True, positions["west"][0], positions["west"][1]))
         self.elements.append(Element("dirt", True, positions["south"][0], positions["south"][1]))
         self.elements.append(Element("wind", True, positions["north"][0], positions["north"][1]))
+        if "water" not in self.unlocked_elements:
+            self.unlocked_elements.append("water")
+            self.unlocked_elements.append("fire")
+            self.unlocked_elements.append("dirt")
+            self.unlocked_elements.append("wind")
 
     def check_and_combine_elements(self, element1_name, element2_name):
         for combo in self.combinations_data:
             if {combo["element1"], combo["element2"]} == {element1_name, element2_name}:
+                if combo["result"] not in self.unlocked_elements:
+                    self.unlocked_elements.append(combo["result"])
                 return combo["result"]
         return None
 
