@@ -53,11 +53,11 @@ class Alchemy(arcade.Window):
                          arcade.color.WHITE, 20, anchor_x="center")
 
         # Do usunięcia
-        arcade.draw_lrtb_rectangle_filled(left=BUTTON_LEFT_WALL,
-                                          right=BUTTON_RIGHT_WALL,
-                                          top=ELEMENT_BUTTON_TOP_WALL,
-                                          bottom=ELEMENT_BUTTON_BOTTOM_WALL,
-                                          color=arcade.color.BLUE)
+        # arcade.draw_lrtb_rectangle_filled(left=BUTTON_LEFT_WALL,
+        #                                   right=BUTTON_RIGHT_WALL,
+        #                                   top=ELEMENT_BUTTON_TOP_WALL,
+        #                                   bottom=ELEMENT_BUTTON_BOTTOM_WALL,
+        #                                   color=arcade.color.BLUE)
 
     def draw_button(self, modifier, icon, text):
         padding_height = PADDING_HEIGHT + 80 * modifier
