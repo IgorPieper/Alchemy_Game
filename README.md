@@ -1,0 +1,3 @@
+This project originated from an idea that took root in my childhood. Back then, I thought it would be fantastic to create such a game, and now, equipped with the necessary skills, I am bringing it to life. This endeavor is purely for pleasure and serves as a testament to my abilities.
+
+An Alchemy-type game is one where you combine two elements to create something new. Starting with just the four basic elements, your goal is to craft as many items as possible. To this foundation, I am adding a plethora of my own ideas, blending everything together within a Python environment.

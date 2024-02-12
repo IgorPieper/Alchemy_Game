@@ -19,6 +19,7 @@ class Alchemy(arcade.Window):
         self.elements = []
         self.unlocked_elements = []
         self.elements_count = "4/33"
+        self.button_placement = 1
         self.every_element_count = sum(1 for item in os.listdir(ELEMENTS_PATH)
                                        if os.path.isfile(os.path.join(ELEMENTS_PATH, item)))
         self.spawn_default_elements(SCREEN_MIDDLE_WIDTH, SCREEN_MIDDLE_HEIGHT, ELEMENTS_SPACING)
@@ -51,15 +52,21 @@ class Alchemy(arcade.Window):
         arcade.draw_text(self.elements_count, RIGHT_PANEL_MIDDLE_WIDTH, RIGHT_PANEL_MIDDLE_HEIGHT - 37,
                          arcade.color.WHITE, 20, anchor_x="center")
 
-    def draw_button(self, modifier, icon, text):
-        padding_width = RIGHT_PANEL_LEFT_BORDER + 50
-        padding_height = 50 + 80 * modifier
+        # Do usunięcia
+        arcade.draw_lrtb_rectangle_filled(left=BUTTON_LEFT_WALL,
+                                          right=BUTTON_RIGHT_WALL,
+                                          top=ELEMENT_BUTTON_TOP_WALL,
+                                          bottom=ELEMENT_BUTTON_BOTTOM_WALL,
+                                          color=arcade.color.BLUE)
 
-        arcade.draw_texture_rectangle(padding_width, padding_height,
+    def draw_button(self, modifier, icon, text):
+        padding_height = PADDING_HEIGHT + 80 * modifier
+
+        arcade.draw_texture_rectangle(PADDING_WIDTH, padding_height,
                                       icon.width,
                                       icon.height, icon)
 
-        text_width = padding_width + 40
+        text_width = PADDING_WIDTH + 40
         text_height = padding_height - 8
 
         arcade.draw_text(text, text_width, text_height, arcade.color.WHITE, 20, anchor_x="left")
@@ -94,15 +101,9 @@ class Alchemy(arcade.Window):
             self.click_count = 0  # Reset click count after handling
 
         # Working clear button
-        trash_icon_width_scaled = RECYCLE_ICON.width
-        trash_icon_height_scaled = RECYCLE_ICON.height
-        trash_button_x_start = RIGHT_PANEL_MIDDLE_WIDTH - 50 - trash_icon_width_scaled // 2
-        trash_button_x_end = RIGHT_PANEL_MIDDLE_WIDTH + 20 + 40
-        trash_button_y_start = 75 - trash_icon_height_scaled // 2
-        trash_button_y_end = 75 + trash_icon_height_scaled // 2
-
-        if trash_button_x_start < x < trash_button_x_end and trash_button_y_start < y < trash_button_y_end:
+        if RIGHT_PANEL_LEFT_BORDER < x < BUTTON_RIGHT_WALL and CLEAR_BUTTON_BOTTOM_WALL < y < CLEAR_BUTTON_TOP_WALL:
             self.elements.clear()
+
 
         # Elements fusion
         if not self.click_count == 3 and element_clicked:

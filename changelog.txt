@@ -1,0 +1,41 @@
+Demo 9:
+    Improved the hitbox of the "Clear" button
+    Simplified the code for easier addition of future buttons in the sidebar
+    Added new files: README, LICENSE, changelog, requirements
+
+Demo 8:
+    The right panel is now slightly transparent
+    Changed texture resolutions / Removed scaling within the app to improve their quality
+    Redesigned and simplified the right sidebar
+    Added a missing hourglass texture
+
+Demo 7:
+    Several new elements
+    Counter for unlocked items
+    Tracking which elements the user has unlocked
+
+Demo 6:
+    Ability to clone an element [Triple press on a given element]
+    Many new elements
+    Organizing code to facilitate further development
+
+Demo 5:
+    File with possible combinations
+    Ability to combine elements
+    Stylesheet
+    Quick clear screen button
+
+Demo 4:
+    Added a sidebar
+    Now possible to delete elements by dragging them to the sidebar area
+    Starting position of elements
+    Ability to summon basic elements [Triple click in an empty area on the screen]
+
+Demos 1-3:
+    Added the basic 4 elements
+    Adapted the environment and game screen
+    Ability to grab and move elements
+
+Demo 0:
+    Written in Scratch, it shows the basic mechanics of the game
+    Has about 20 elements and a playable mechanic of combining them
