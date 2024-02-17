@@ -1,11 +1,17 @@
 import arcade
+from styles.preferences import *
 
 # Windows Attributes
 SCREEN_TITLE = "Alchemy"
+BACKGROUND_IMAGE = arcade.load_texture(f"art/background/{background_image_name}.png")
 
 SCREEN_WIDTH, SCREEN_HEIGHT = arcade.get_display_size()
 SCREEN_MIDDLE_WIDTH = SCREEN_WIDTH // 2
 SCREEN_MIDDLE_HEIGHT = SCREEN_HEIGHT // 2
+
+print(SCREEN_WIDTH)
+print("\n")
+print(SCREEN_HEIGHT)
 
 # Right Panel
 RIGHT_PANEL_SCALE = 7
@@ -33,3 +39,6 @@ CLEAR_BUTTON_BOTTOM_WALL = RECYCLE_ICON.height - 40
 CLEAR_BUTTON_TOP_WALL = RECYCLE_ICON.height + 40
 ELEMENT_BUTTON_BOTTOM_WALL = (ALL_ELEMENTS_ICON.height - 40) + 82
 ELEMENT_BUTTON_TOP_WALL = (ALL_ELEMENTS_ICON.height + 40) + 82
+
+# TOP LEFT BUTTON
+SETTING_ICON = arcade.load_texture(f"{BUTTON_IMAGE_PATH}power.png")

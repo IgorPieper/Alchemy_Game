@@ -1,6 +1,7 @@
 from pyglet.math import Vec2
 
 from logic.elements import *
+from styles.preferences import *
 
 import arcade
 import time
@@ -14,7 +15,7 @@ ELEMENTS_SPACING = 200
 
 class Alchemy(arcade.Window):
     def __init__(self):
-        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
+        super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE, fullscreen=fullscreen)
         arcade.set_background_color(arcade.color.ASH_GREY)
         self.camera = arcade.Camera(self.width, self.height)
         self.click_count = 0
@@ -44,8 +45,17 @@ class Alchemy(arcade.Window):
 
     def on_draw(self):
         arcade.start_render()
+        arcade.draw_lrwh_rectangle_textured(0, 0,
+                                            BACKGROUND_IMAGE.width,
+                                            BACKGROUND_IMAGE.height,
+                                            BACKGROUND_IMAGE)
+
         for element in self.elements:
             element.draw()
+
+        arcade.draw_texture_rectangle(40, 40,
+                                      SETTING_ICON.width,
+                                      SETTING_ICON.height, SETTING_ICON)
 
         arcade.draw_rectangle_filled(RIGHT_PANEL_MIDDLE_WIDTH, RIGHT_PANEL_MIDDLE_HEIGHT,
                                      RIGHT_PANEL_WIDTH, RIGHT_PANEL_HEIGHT, TRANSPARENT_BLACK)
@@ -62,6 +72,8 @@ class Alchemy(arcade.Window):
         #                                   top=ELEMENT_BUTTON_TOP_WALL,
         #                                   bottom=ELEMENT_BUTTON_BOTTOM_WALL,
         #                                   color=arcade.color.RED)
+
+
 
     def draw_button(self, modifier, icon, text):
         padding_height = PADDING_HEIGHT + 80 * modifier
@@ -108,10 +120,13 @@ class Alchemy(arcade.Window):
         if RIGHT_PANEL_LEFT_BORDER < x < BUTTON_RIGHT_WALL and CLEAR_BUTTON_BOTTOM_WALL < y < CLEAR_BUTTON_TOP_WALL:
             self.elements.clear()
 
-        # if RIGHT_PANEL_LEFT_BORDER < x < BUTTON_RIGHT_WALL and ELEMENT_BUTTON_BOTTOM_WALL < y < ELEMENT_BUTTON_TOP_WALL:
-        #     self.camera.move(Vec2(2000, 500))
-        #     self.camera.use()
+        if RIGHT_PANEL_LEFT_BORDER < x < BUTTON_RIGHT_WALL and ELEMENT_BUTTON_BOTTOM_WALL < y < ELEMENT_BUTTON_TOP_WALL:
+            self.camera.move(Vec2(0, 2000))
+            self.camera.use()
 
+        if self.click_count == 2:
+            if 20 < x < 60 and 20 < y < 60:
+                self.close()
 
         # Elements fusion
         if not self.click_count == 3 and element_clicked:

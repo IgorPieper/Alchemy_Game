@@ -1,3 +1,9 @@
+Demo 10:
+    Updated requirement.txt
+    Now we have user preferences file
+    Introduction of support for other languages
+    Polish and English languages ​​are currently supported
+
 Demo 9:
     Improved the hitbox of the "Clear" button
     Simplified the code for easier addition of future buttons in the sidebar
