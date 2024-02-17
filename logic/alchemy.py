@@ -1,9 +1,12 @@
+from pyglet.math import Vec2
+
 from logic.elements import *
 
 import arcade
 import time
 import json
 import os
+import math
 
 # Starting position of elements:
 ELEMENTS_SPACING = 200
@@ -13,6 +16,7 @@ class Alchemy(arcade.Window):
     def __init__(self):
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
         arcade.set_background_color(arcade.color.ASH_GREY)
+        self.camera = arcade.Camera(self.width, self.height)
         self.click_count = 0
         self.last_click_time = 0
         self.click_threshold = 0.25
@@ -47,7 +51,7 @@ class Alchemy(arcade.Window):
                                      RIGHT_PANEL_WIDTH, RIGHT_PANEL_HEIGHT, TRANSPARENT_BLACK)
 
         self.draw_button(0, RECYCLE_ICON, "Clear")
-        self.draw_button(1, ALL_ELEMENTS_ICON, "Elements")
+        self.draw_button(1, ALL_ELEMENTS_ICON, "Catalog")
 
         arcade.draw_text(self.elements_count, RIGHT_PANEL_MIDDLE_WIDTH, RIGHT_PANEL_MIDDLE_HEIGHT - 37,
                          arcade.color.WHITE, 20, anchor_x="center")
@@ -57,7 +61,7 @@ class Alchemy(arcade.Window):
         #                                   right=BUTTON_RIGHT_WALL,
         #                                   top=ELEMENT_BUTTON_TOP_WALL,
         #                                   bottom=ELEMENT_BUTTON_BOTTOM_WALL,
-        #                                   color=arcade.color.BLUE)
+        #                                   color=arcade.color.RED)
 
     def draw_button(self, modifier, icon, text):
         padding_height = PADDING_HEIGHT + 80 * modifier
@@ -94,15 +98,19 @@ class Alchemy(arcade.Window):
         # Triple-click functionality
         if self.click_count == 3:
             if element_clicked:
-                cloned_element = Element(element.name, True, element.position_x + 10, element.position_y + 10)
+                cloned_element = Element(element.name, element.position_x + 10, element.position_y + 10)
                 self.elements.append(cloned_element)
             else:
                 self.spawn_default_elements(x, y, ELEMENTS_SPACING)
-            self.click_count = 0  # Reset click count after handling
+            self.click_count = 0
 
         # Working clear button
         if RIGHT_PANEL_LEFT_BORDER < x < BUTTON_RIGHT_WALL and CLEAR_BUTTON_BOTTOM_WALL < y < CLEAR_BUTTON_TOP_WALL:
             self.elements.clear()
+
+        # if RIGHT_PANEL_LEFT_BORDER < x < BUTTON_RIGHT_WALL and ELEMENT_BUTTON_BOTTOM_WALL < y < ELEMENT_BUTTON_TOP_WALL:
+        #     self.camera.move(Vec2(2000, 500))
+        #     self.camera.use()
 
 
         # Elements fusion
@@ -139,7 +147,7 @@ class Alchemy(arcade.Window):
             self.dragging_element.position_y += dy
 
     def add_element(self, name,  x, y):
-        self.elements.append(Element(name, True, x, y))
+        self.elements.append(Element(name, x, y))
         self.elements_count = f"{len(self.unlocked_elements)}/{self.every_element_count}"
 
     def spawn_default_elements(self, x, y, spacing):
@@ -148,10 +156,10 @@ class Alchemy(arcade.Window):
                      "west": (x - spacing // 2, y),
                      "south": (x, y - spacing // 2)}
 
-        self.elements.append(Element("water", True, positions["east"][0], positions["east"][1]))
-        self.elements.append(Element("fire", True, positions["west"][0], positions["west"][1]))
-        self.elements.append(Element("dirt", True, positions["south"][0], positions["south"][1]))
-        self.elements.append(Element("wind", True, positions["north"][0], positions["north"][1]))
+        self.elements.append(Element("water", positions["east"][0], positions["east"][1]))
+        self.elements.append(Element("fire", positions["west"][0], positions["west"][1]))
+        self.elements.append(Element("dirt", positions["south"][0], positions["south"][1]))
+        self.elements.append(Element("wind", positions["north"][0], positions["north"][1]))
         if "water" not in self.unlocked_elements:
             self.unlocked_elements.append("water")
             self.unlocked_elements.append("fire")
@@ -165,3 +173,4 @@ class Alchemy(arcade.Window):
                     self.unlocked_elements.append(combo["result"])
                 return combo["result"]
         return None
+

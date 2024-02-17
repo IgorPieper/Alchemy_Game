@@ -1,14 +1,16 @@
 from styles.main_styles import *
+from styles.preferences import *
 
 import arcade
 import random
+import json
 
 # Elements (100x100 px)
 ELEMENTS_PATH = "art/elements/"
 
 
 class Element:
-    def __init__(self, name, is_unlocked=None, position_x=None, position_y=None):
+    def __init__(self, name, position_x=None, position_y=None):
         self.name = name
         self.radius = 50
         self.position_x = position_x if position_x is not None else random.randint(self.radius,
@@ -19,10 +21,27 @@ class Element:
 
         self.texture = arcade.load_texture(f"{ELEMENTS_PATH}{name}.png")
 
+    @staticmethod
+    def translation(name):
+        file_name = f"language/{language}.json"
+
+        try:
+            with open(file_name, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+        except FileNotFoundError:
+            return name
+
+        if name in data:
+            return data[name]
+        else:
+            return name
+
     def draw(self):
         arcade.draw_texture_rectangle(self.position_x, self.position_y, self.texture.width,
                                       self.texture.height, self.texture)
-        arcade.draw_text(self.name, self.position_x, self.position_y - 75, arcade.color.WHITE, 20, anchor_x="center")
+        arcade.draw_text(self.translation(self.name), self.position_x, self.position_y - 75, arcade.color.WHITE, 20, anchor_x="center")
+
+
 
     def check_mouse_press(self, x, y):
         distance = ((x - self.position_x) ** 2 + (y - self.position_y) ** 2) ** 0.5
