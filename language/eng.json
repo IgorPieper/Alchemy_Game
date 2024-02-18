@@ -32,5 +32,18 @@
   "magma": "Magma",
   "gale": "Gale",
   "energy": "Energy",
-  "flint": "Flint"
+  "flint": "Flint",
+  "boiling_water": "Boiling Water",
+  "heat": "Heat",
+  "pond": "Pond",
+  "water_garden": "Water Garden",
+  "rainwater": "Rainwater",
+  "pressure": "Pressure",
+  "sandstone": "Sandstone",
+  "bedrock": "Bedrock",
+  "peat": "Peat",
+  "quartz": "Quartz",
+  "smog": "Smog",
+  "hot_springs": "Hot Springs",
+  "pot": "Pot"
 }

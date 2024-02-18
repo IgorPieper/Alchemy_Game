@@ -7,7 +7,6 @@ import arcade
 import time
 import json
 import os
-import math
 
 # Starting position of elements:
 ELEMENTS_SPACING = 200
@@ -73,8 +72,6 @@ class Alchemy(arcade.Window):
         #                                   bottom=ELEMENT_BUTTON_BOTTOM_WALL,
         #                                   color=arcade.color.RED)
 
-
-
     def draw_button(self, modifier, icon, text):
         padding_height = PADDING_HEIGHT + 80 * modifier
 
@@ -120,9 +117,9 @@ class Alchemy(arcade.Window):
         if RIGHT_PANEL_LEFT_BORDER < x < BUTTON_RIGHT_WALL and CLEAR_BUTTON_BOTTOM_WALL < y < CLEAR_BUTTON_TOP_WALL:
             self.elements.clear()
 
-        if RIGHT_PANEL_LEFT_BORDER < x < BUTTON_RIGHT_WALL and ELEMENT_BUTTON_BOTTOM_WALL < y < ELEMENT_BUTTON_TOP_WALL:
-            self.camera.move(Vec2(0, 2000))
-            self.camera.use()
+        # if RIGHT_PANEL_LEFT_BORDER < x < BUTTON_RIGHT_WALL and ELEMENT_BUTTON_BOTTOM_WALL < y < ELEMENT_BUTTON_TOP_WALL:
+        #     self.camera.move(Vec2(0, 2000))
+        #     self.camera.use()
 
         if self.click_count == 2:
             if 20 < x < 60 and 20 < y < 60:
@@ -145,7 +142,14 @@ class Alchemy(arcade.Window):
                     if result_name:
                         new_element_x = (self.dragging_element.position_x + element.position_x) / 2
                         new_element_y = (self.dragging_element.position_y + element.position_y) / 2
-                        self.add_element(result_name, new_element_x, new_element_y)
+
+                        if isinstance(result_name, list):
+                            for name in result_name:
+                                new_element_x += 20
+                                new_element_y += 20
+                                self.add_element(name, new_element_x, new_element_y)
+                        else:
+                            self.add_element(result_name, new_element_x, new_element_y)
                         self.elements.remove(self.dragging_element)
                         self.elements.remove(element)
                         break
@@ -188,4 +192,3 @@ class Alchemy(arcade.Window):
                     self.unlocked_elements.append(combo["result"])
                 return combo["result"]
         return None
-

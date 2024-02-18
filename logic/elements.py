@@ -19,7 +19,10 @@ class Element:
                                                                                    SCREEN_HEIGHT - self.radius)
         self.dragging = False
 
-        self.texture = arcade.load_texture(f"{ELEMENTS_PATH}{name}.png")
+        try:
+            self.texture = arcade.load_texture(f"{ELEMENTS_PATH}{name}.png")
+        except FileNotFoundError:
+            self.texture = arcade.load_texture(f"{BUTTON_IMAGE_PATH}element_not_found.png")
 
     @staticmethod
     def translation(name):
