@@ -42,9 +42,8 @@ class Element:
     def draw(self):
         arcade.draw_texture_rectangle(self.position_x, self.position_y, self.texture.width,
                                       self.texture.height, self.texture)
-        arcade.draw_text(self.translation(self.name), self.position_x, self.position_y - 75, arcade.color.WHITE, 20, anchor_x="center")
-
-
+        arcade.draw_text(self.translation(self.name), self.position_x, self.position_y - 75,
+                         arcade.color.WHITE, 20, anchor_x="center")
 
     def check_mouse_press(self, x, y):
         distance = ((x - self.position_x) ** 2 + (y - self.position_y) ** 2) ** 0.5

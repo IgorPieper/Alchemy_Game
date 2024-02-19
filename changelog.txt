@@ -1,8 +1,13 @@
+Demo 12:
+    Now, one combination can yield multiple results
+    Several new elements
+    Addition of a default image for elements
+
 Demo 11:
     The game now supports fullscreen mode
     A button to exit the game has been added in the bottom left corner
     The game now has a background
-    The background can be changed in preferences, as well as toggling fullscreen mode on and off.
+    The background can be changed in preferences, as well as toggling fullscreen mode on and off
 
 Demo 10:
     Updated requirement.txt
