@@ -1,3 +1,10 @@
+Demo 14:
+    Logs now contain more information
+    More backgrounds
+    Unlocked items are now saved alphabetically
+    Catalog now displays unlocked items
+    Updated several textures
+
 Demo 13:
     Enhancement of the progress counter
     Changes in the distance of the copied element from the original
