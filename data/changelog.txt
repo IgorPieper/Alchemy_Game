@@ -1,3 +1,11 @@
+Demo 13:
+    Enhancement of the progress counter
+    Changes in the distance of the copied element from the original
+    Improvement of round button hitboxes
+    Changes in the distance between created elements when two elements are created
+    Adding support for logs
+    It is now possible to freely switch between the catalog and the main page
+
 Demo 12:
     Now, one combination can yield multiple results
     Several new elements

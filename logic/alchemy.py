@@ -82,18 +82,30 @@ class Alchemy(arcade.Window):
         #                                   color=arcade.color.RED)
 
         # Catalog View
-        arcade.draw_lrwh_rectangle_textured(0, 2000,
+        arcade.draw_lrwh_rectangle_textured(0, -2000,
                                             BACKGROUND_IMAGE.width,
                                             BACKGROUND_IMAGE.height,
                                             BACKGROUND_IMAGE)
 
-        arcade.draw_texture_rectangle(40, 2040,
+        arcade.draw_texture_rectangle(40, BACK_BUTTON_Y - 2000,
                                       SETTING_ICON.width,
                                       SETTING_ICON.height, SETTING_ICON)
 
-        arcade.draw_texture_rectangle(BACK_BUTTON_X, BACK_BUTTON_Y + 2000,
+        arcade.draw_texture_rectangle(BACK_BUTTON_X, BACK_BUTTON_Y - 2000,
                                       SETTING_ICON.width,
                                       SETTING_ICON.height, BACK_BUTTON)
+        catalog_x = 0
+        catalog_y = 775
+        for n in self.unlocked_elements:
+            catalog_x += 120
+
+            element_texture = arcade.load_texture(f"art/elements/{n}.png")
+            arcade.draw_texture_rectangle(catalog_x, catalog_y - 2000,
+                                          element_texture.width, element_texture.height, element_texture)
+
+            if catalog_x >= 1440:
+                catalog_y -= 120
+                catalog_x = 0
 
     def draw_button(self, modifier, icon, text):
         padding_height = PADDING_HEIGHT + 80 * modifier
@@ -140,16 +152,18 @@ class Alchemy(arcade.Window):
         # Working clear button
         if ((RIGHT_PANEL_LEFT_BORDER < x < BUTTON_RIGHT_WALL and
                 CLEAR_BUTTON_BOTTOM_WALL < y < CLEAR_BUTTON_TOP_WALL) and self.current_screen_view == 0):
+            self.add_to_history(f"The user deleted {len(self.elements)} elements", None)
             self.elements.clear()
 
         if ((RIGHT_PANEL_LEFT_BORDER < x < BUTTON_RIGHT_WALL and
                 ELEMENT_BUTTON_BOTTOM_WALL < y < ELEMENT_BUTTON_TOP_WALL) and self.current_screen_view == 0):
             self.current_screen_view = 1
-            self.camera.move(Vec2(0, 2000))
+            self.camera.move(Vec2(0, -2000))
             self.camera.use()
 
         if self.click_count == 2:
             if (x - SETTING_BUTTON_X)**2 + (y - SETTING_BUTTON_Y)**2 < SETTING_BUTTON_RADIUS**2:
+                self.add_to_history("The game has been turned off", None)
                 self.close()
 
         # Catalog View
@@ -157,7 +171,6 @@ class Alchemy(arcade.Window):
             self.current_screen_view = 0
             self.camera.move(Vec2(0, 0))
             self.camera.use()
-
 
         # Elements fusion
         if not self.click_count == 3 and element_clicked:
@@ -205,6 +218,7 @@ class Alchemy(arcade.Window):
     def add_element(self, name,  x, y):
         self.elements.append(Element(name, x, y))
         self.elements_count = f"Progress: {len(self.unlocked_elements)}/{self.every_element_count}"
+        self.add_to_history(f"{name} has been made", name)
 
     def spawn_default_elements(self, x, y, spacing):
         positions = {"north": (x, y + spacing // 2),
@@ -221,25 +235,32 @@ class Alchemy(arcade.Window):
             self.unlocked_elements.append("fire")
             self.unlocked_elements.append("dirt")
             self.unlocked_elements.append("wind")
+            self.add_to_history("Water, Fire, Dirt and Wind have been unlocked", None)
 
     def check_and_combine_elements(self, element1_name, element2_name):
-        for combo in self.combinations_data:
-            if {combo["element1"], combo["element2"]} == {element1_name, element2_name}:
-                if combo["result"] not in self.unlocked_elements:
-                    self.unlocked_elements.append(combo["result"])
-                return combo["result"]
+        for n in self.combinations_data:
+            if {n["element1"], n["element2"]} == {element1_name, element2_name}:
+                if isinstance(n["result"], list):
+                    for m in n["result"]:
+                        if m not in self.unlocked_elements:
+                            self.unlocked_elements.append(m)
+                            self.add_to_history(f"{m} has been unlocked", m)
+                else:
+                    if n["result"] not in self.unlocked_elements:
+                        self.unlocked_elements.append(n["result"])
+                        self.add_to_history(f"{n['result']} has been unlocked", n['result'])
+                self.unlocked_elements.sort()
+                return n["result"]
         return None
 
     def clear_log(self):
-        with open(LOG, 'w') as file:
+        with open(LOG, 'w'):
             pass
+        self.add_to_history("The game has been launched", None)
 
     def add_to_history(self, sentence, element):
-        current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+        current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         with open(LOG, 'a') as file:
             file.write(f"{current_time} | {sentence}\n")
 
-        if len(self.history) >= 9:
-            self.history.pop()
-        self.history.insert(0, (sentence, element))
 

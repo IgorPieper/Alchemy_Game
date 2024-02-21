@@ -1,0 +1,99 @@
+2024-02-21 12:05:04 | The game has been launched
+2024-02-21 12:05:04 | Water, Fire, Dirt and Wind have been unlocked
+2024-02-21 12:05:05 | Moving water
+2024-02-21 12:05:05 | steam has been unlocked
+2024-02-21 12:05:05 | boiling_water has been unlocked
+2024-02-21 12:05:05 | steam has been made
+2024-02-21 12:05:05 | boiling_water has been made
+2024-02-21 12:05:05 | Used fire
+2024-02-21 12:05:05 | Used water
+2024-02-21 12:05:06 | Moving boiling_water
+2024-02-21 12:05:06 | steam has been made
+2024-02-21 12:05:06 | Used wind
+2024-02-21 12:05:06 | Used boiling_water
+2024-02-21 12:05:07 | Moving steam
+2024-02-21 12:05:07 | cloud has been unlocked
+2024-02-21 12:05:07 | cloud has been made
+2024-02-21 12:05:07 | Used steam
+2024-02-21 12:05:07 | Used steam
+2024-02-21 12:05:08 | Moving cloud
+2024-02-21 12:05:10 | Moving fire
+2024-02-21 12:05:10 | smoke has been unlocked
+2024-02-21 12:05:10 | heat has been unlocked
+2024-02-21 12:05:10 | smoke has been made
+2024-02-21 12:05:10 | heat has been made
+2024-02-21 12:05:10 | Used wind
+2024-02-21 12:05:10 | Used fire
+2024-02-21 12:05:11 | Moving water
+2024-02-21 12:05:11 | rain has been unlocked
+2024-02-21 12:05:11 | rain has been made
+2024-02-21 12:05:11 | Used cloud
+2024-02-21 12:05:11 | Used water
+2024-02-21 12:05:12 | Moving smoke
+2024-02-21 12:05:17 | Moving wind
+2024-02-21 12:05:17 | Moving wind
+2024-02-21 12:05:17 | Moving wind
+2024-02-21 12:05:17 | Moving wind
+2024-02-21 12:05:17 | Moving wind
+2024-02-21 12:05:18 | smoke has been made
+2024-02-21 12:05:18 | heat has been made
+2024-02-21 12:05:18 | Used fire
+2024-02-21 12:05:18 | Used wind
+2024-02-21 12:05:18 | Moving heat
+2024-02-21 12:05:19 | Moving smoke
+2024-02-21 12:05:21 | Moving wind
+2024-02-21 12:05:21 | tornado has been unlocked
+2024-02-21 12:05:21 | tornado has been made
+2024-02-21 12:05:21 | Used wind
+2024-02-21 12:05:21 | Used wind
+2024-02-21 12:05:21 | Moving tornado
+2024-02-21 12:05:22 | gale has been unlocked
+2024-02-21 12:05:22 | gale has been made
+2024-02-21 12:05:22 | Used water
+2024-02-21 12:05:22 | Used tornado
+2024-02-21 12:05:23 | Moving gale
+2024-02-21 12:05:23 | Moving gale
+2024-02-21 12:05:24 | Moving dirt
+2024-02-21 12:05:25 | lava has been unlocked
+2024-02-21 12:05:25 | lava has been made
+2024-02-21 12:05:25 | Used fire
+2024-02-21 12:05:25 | Used dirt
+2024-02-21 12:05:25 | Moving lava
+2024-02-21 12:05:26 | stone has been unlocked
+2024-02-21 12:05:26 | stone has been made
+2024-02-21 12:05:26 | Used water
+2024-02-21 12:05:26 | Used lava
+2024-02-21 12:05:26 | Moving stone
+2024-02-21 12:05:29 | Moving wind
+2024-02-21 12:05:30 | sand has been unlocked
+2024-02-21 12:05:30 | sand has been made
+2024-02-21 12:05:30 | Used stone
+2024-02-21 12:05:30 | Used wind
+2024-02-21 12:05:31 | Moving sand
+2024-02-21 12:05:31 | glass has been unlocked
+2024-02-21 12:05:31 | glass has been made
+2024-02-21 12:05:31 | Used fire
+2024-02-21 12:05:31 | Used sand
+2024-02-21 12:05:32 | Moving glass
+2024-02-21 12:05:34 | Moving dirt
+2024-02-21 12:05:34 | Moving dirt
+2024-02-21 12:05:35 | mud has been unlocked
+2024-02-21 12:05:35 | mud has been made
+2024-02-21 12:05:35 | Used water
+2024-02-21 12:05:35 | Used dirt
+2024-02-21 12:05:36 | Moving mud
+2024-02-21 12:05:40 | Moving wind
+2024-02-21 12:05:41 | pressure has been unlocked
+2024-02-21 12:05:41 | pressure has been made
+2024-02-21 12:05:41 | Used heat
+2024-02-21 12:05:41 | Used wind
+2024-02-21 12:05:41 | Moving pressure
+2024-02-21 12:05:42 | peat has been unlocked
+2024-02-21 12:05:42 | peat has been made
+2024-02-21 12:05:42 | Used mud
+2024-02-21 12:05:42 | Used pressure
+2024-02-21 12:05:43 | Moving peat
+2024-02-21 12:05:45 | Moving peat
+2024-02-21 12:05:46 | Moving peat
+2024-02-21 12:05:47 | Moving peat
+2024-02-21 12:07:36 | The game has been turned off
