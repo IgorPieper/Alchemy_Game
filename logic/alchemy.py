@@ -44,7 +44,8 @@ class Alchemy(arcade.Window):
         self.elements[:] = [element for element in self.elements if element.position_x < RIGHT_PANEL_LEFT_EDGE]
 
     def setup(self):
-        pass
+        if debugging_mode:
+            self.debbuging_mode_is_working()
 
     def on_draw(self):
         arcade.start_render()
@@ -263,4 +264,9 @@ class Alchemy(arcade.Window):
         with open(LOG, 'a') as file:
             file.write(f"{current_time} | {sentence}\n")
 
-
+    def debbuging_mode_is_working(self):
+        for plik in os.listdir(ELEMENTS_PATH):
+            if os.path.isfile(os.path.join(ELEMENTS_PATH, plik)):
+                ele_name = os.path.splitext(plik)[0]
+                if ele_name not in self.unlocked_elements:
+                    self.unlocked_elements.append(ele_name)
