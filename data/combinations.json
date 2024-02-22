@@ -313,5 +313,50 @@
         "element1": "clay",
         "element2": "dirt",
         "result": "pot"
+    },
+    {
+        "element1": "brick",
+        "element2": "stone",
+        "result": "stone_brick"
+    },
+    {
+        "element1": "brick",
+        "element2": "mud",
+        "result": "mud_brick"
+    },
+    {
+        "element1": "peat",
+        "element2": "fire",
+        "result": "ash"
+    },
+    {
+        "element1": "ash",
+        "element2": "water",
+        "result": "black_dye"
+    },
+    {
+        "element1": "black_dye",
+        "element2": "dirt",
+        "result": "black_soil"
+    },
+    {
+        "element1": "black_dye",
+        "element2": "stone",
+        "result": "basalt"
+    },
+    {
+        "element1": "black_dye",
+        "element2": "rock",
+        "result": "basalt"
+    },
+    {
+        "element1": "black_dye",
+        "element2": "peat",
+        "result": "black_soil"
+    },
+    {
+        "element1": "black_dye",
+        "element2": "mud",
+        "result": "black_soil"
     }
 ]

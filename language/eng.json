@@ -45,5 +45,9 @@
   "quartz": "Quartz",
   "smog": "Smog",
   "hot_springs": "Hot Springs",
-  "pot": "Pot"
+  "pot": "Pot",
+  "stone_brick": "Stone Brick",
+  "mud_brick": "Mud Brick",
+  "ash": "Ash",
+  "basalt": "Basalt"
 }

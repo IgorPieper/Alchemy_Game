@@ -45,5 +45,11 @@
   "quartz": "Kwarc",
   "smog": "Smog",
   "hot_springs": "Gorące Źródła",
-  "pot": "Doniczka"
+  "pot": "Doniczka",
+  "stone_brick": "Kamienne Cegły",
+  "mud_brick": "Błotne Cegły",
+  "ash": "Popiół",
+  "black_dye": "Czarny Barwnik",
+  "black_soil": "Czarnoziem",
+  "basalt": "Bazalt"
 }
