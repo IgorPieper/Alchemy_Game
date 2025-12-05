@@ -9,4 +9,4 @@ fullscreen = True
 background_image_name = "bg2"
 
 # [True, False]
-debugging_mode = False
+debugging_mode = True
