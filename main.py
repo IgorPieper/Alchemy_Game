@@ -5,7 +5,6 @@ import arcade
 
 def main():
     game = Alchemy()
-    game.setup()
     arcade.run()
 
 

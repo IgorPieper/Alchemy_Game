@@ -1,3 +1,7 @@
+Demo 17:
+    Simplified how elements in the game work so they move and interact more smoothly and reliably
+    Reorganized the Alchemy code to make it clearer, easier to maintain, and better prepared for future features
+
 Demo 16:
     Added an AssetManager to cache textures and prevent redundant loading, improving game performance and stability
     Splitting main_styles.py into constants.py, assets.py, and layout.py for clarity
